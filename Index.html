@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuildWise Interiors & Constructions</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables (Color Palette) --- */
+        :root {
+            --teal: #0F4C5C;        /* Deep Teal Green */
+            --teal-dark: #09313A;
+            --gold: #D4AF37;        /* Golden Accent */
+            --gold-hover: #b5952f;
+            --cream: #FDFBF7;       /* Cream Background */
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        /* --- Global Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--teal);
+            margin-bottom: 3rem;
+            font-weight: 800;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            text-align: center;
+        }
+
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--text-dark);
+        }
+
+        .btn-gold:hover {
+            background-color: var(--gold-hover);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--gold);
+            color: var(--text-dark);
+        }
+
+        /* --- Sticky Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--cream);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--teal);
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links li a {
+            font-weight: 600;
+            color: var(--teal);
+            transition: var(--transition);
+        }
+
+        .nav-links li a:hover {
+            color: var(--gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--teal);
+            cursor: pointer;
+        }
+
+        /* --- Hero Section --- */
+        #home {
+            background-color: var(--teal);
+            color: var(--text-light);
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            color: var(--cream);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--gold);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .hero-phone {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 800;
+            color: var(--cream);
+        }
+
+        .hero-phone i {
+            color: var(--gold);
+            margin-right: 10px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* --- Services Section --- */
+        #services {
+            padding: 80px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border-bottom: 4px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--teal);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            color: var(--teal-dark);
+        }
+
+        /* --- Process / Features Section --- */
+        #process {
+            padding: 80px 0;
+            background-color: #f5f2eb;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .process-card {
+            background: var(--cream);
+            padding: 30px 20px;
+            border-radius: 8px;
+            border-left: 5px solid var(--gold);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .process-card h3 {
+            color: var(--teal);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .process-card p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* --- Why Choose Us Section --- */
+        #why-us {
+            padding: 80px 0;
+            background-color: var(--teal);
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .why-us-content blockquote {
+            font-size: 2rem;
+            font-style: italic;
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .why-us-content .sub-text {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item h4 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        /* --- Contact / Estimate Section --- */
+        #contact {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        #contact h2 {
+            font-size: 2.5rem;
+            color: var(--teal);
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .contact-phone {
+            display: inline-block;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--teal-dark);
+            margin: 20px 0;
+            transition: var(--transition);
+        }
+
+        .contact-phone:hover {
+            color: var(--gold);
+        }
+
+        .promise-text {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--teal-dark);
+            color: var(--cream);
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .footer-col p {
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        /* --- Floating WhatsApp Button --- */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 35px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .floating-wa:hover {
+            transform: scale(1.1);
+            background-color: #1ebe57;
+        }
+
+        /* --- Media Queries --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--cream);
+                padding: 20px 0;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-ctas {
+                flex-direction: column;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-container">
+            <a href="#home" class="logo">BuildWise<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="#contact">Free Consult</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home">
+        <div class="container hero-content">
+            <h1>From Empty Plot To Dream Home — Without Stress.</h1>
+            <p>Construction | Real Estate | Interiors | Turnkey Projects</p>
+            <a href="tel:+919481157792" class="hero-phone"><i class="fas fa-phone-alt"></i> +91 94811 57792</a>
+            
+            <div class="hero-ctas">
+                <a href="https://wa.me/919481157792?text=Hello%20BuildWise,%20I%20would%20like%20to%20get%20my%20Free%20Cost%20Estimate." target="_blank" class="btn btn-gold">Get Your Free Cost Estimate NOW.</a>
+                <a href="https://wa.me/919481157792?text=Hello%20BuildWise,%20I%20am%20DMing%20for%20a%20Free%20Consultation." target="_blank" class="btn btn-outline">DM for Free Consultation</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-key service-icon"></i>
+                    <h3>Turnkey Projects</h3>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-pen-ruler service-icon"></i>
+                    <h3>Architectural Drawings</h3>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-couch service-icon"></i>
+                    <h3>Interior Design</h3>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-house-chimney service-icon"></i>
+                    <h3>Residential Construction</h3>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-building service-icon"></i>
+                    <h3>Commercial Construction</h3>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-clipboard-list service-icon"></i>
+                    <h3>Project Management Consulting</h3>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-city service-icon"></i>
+                    <h3>Real Estate</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process">
+        <div class="container">
+            <h2 class="section-title">The BuildWise Way</h2>
+            <div class="process-grid">
+                <div class="process-card">
+                    <h3>End to End Planning</h3>
+                    <p>One team &middot; One vision &middot; Zero confusion</p>
+                </div>
+                <div class="process-card">
+                    <h3>Design + Execution</h3>
+                    <p>Built for functionality &middot; Designed for elegance</p>
+                </div>
+                <div class="process-card">
+                    <h3>Quality Materials & Trusted Workmanship</h3>
+                    <p>No compromises &middot; Transparent pricing &middot; Premium finish</p>
+                </div>
+                <div class="process-card">
+                    <h3>On Time Project Delivery</h3>
+                    <p>Transparent timelines &middot; Regular updates &middot; Stress free execution</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us">
+        <div class="container why-us-content">
+            <blockquote>"Quality you can see. Trust you can feel."</blockquote>
+            <p class="sub-text">Build better with Buildwise</p>
+            
+            <div class="stats-container">
+                <div class="stat-item">
+                    <h4>15+</h4>
+                    <p>Years of Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h4>300+</h4>
+                    <p>Happy Families</p>
+                </div>
+                <div class="stat-item">
+                    <h4>100%</h4>
+                    <p>Transparency</p>
+                </div>
+            </div>
+
+            <a href="https://wa.me/919481157792?text=Hello%20BuildWise,%20I%20am%20DMing%20for%20a%20Free%20Consultation." target="_blank" class="btn btn-gold">DM FOR FREE CONSULTATION</a>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Get Your Free Cost Estimate NOW.</h2>
+            <a href="tel:+919481157792" class="contact-phone"><i class="fas fa-phone"></i> +91 94811 57792</a>
+            <br>
+            <a href="https://wa.me/919481157792?text=Hello%20BuildWise,%20I%20would%20like%20to%20get%20my%20Free%20Cost%20Estimate." target="_blank" class="btn btn-gold" style="font-size: 1.2rem; margin-top: 10px;">
+                <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+            <p class="promise-text">Schedule your free consultation today and let us build your dream.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>BuildWise Interiors & Constructions</h3>
+                    <p>From Empty Plot To Dream Home — Without Stress.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Our Locations</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Bangalore</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kochi</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Chennai</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-phone"></i> +91 94811 57792</p>
+                    <p><i class="fas fa-envelope"></i> contact@buildwise.example.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 BuildWise Interiors & Constructions. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/919481157792?text=Hello%20BuildWise,%20I%20am%20visiting%20your%20website%20and%20would%20like%20to%20know%20more." target="_blank" class="floating-wa">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const navItems = document.querySelectorAll('.nav-links li a');
+
+            // Toggle mobile menu
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Close mobile menu when a link is clicked
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
